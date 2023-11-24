@@ -1,6 +1,7 @@
 <?php if (isset($_SESSION['user'])): ?>
     <!-- Display account details -->
     <p>Welcome, <?php echo $_SESSION['user']['username']; ?></p>
+    <a href="logout.php">Logout</a>
     <!-- Logout button -->
     <!-- ... -->
 <?php else: ?>
