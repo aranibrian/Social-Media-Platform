@@ -19,22 +19,30 @@ session_start();
 </head>
 <body>
     <div class="container">
+        <!-- Display error message -->
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $_SESSION['error']; ?>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+        
         <div class="row">
             <!-- Account Details or Login/Create Form -->
-            <div class="col-md-4">
-                Account
+            <div class="col-md-3">
+               
                 <?php include 'partials/account.php'; ?>
             </div>
 
             <!-- Feed -->
-            <div class="col-md-4">
-                Feed
+            <div class="col-md-7">
+              
                 <?php include 'partials/feed.php'; ?>
             </div>
 
             <!-- Users and Follow Functionality -->
-            <div class="col-md-4">
-                Users
+            <div class="col-md-2">
+               
                 <?php include 'partials/users.php'; ?>
             </div>
         </div>
