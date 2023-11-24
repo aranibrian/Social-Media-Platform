@@ -4,6 +4,7 @@ body{
 	display: flex;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
+    padding-top: 10px;
 
 }
 .account{
@@ -15,6 +16,15 @@ body{
 }
 .btn-login{
 	background-color: #4267B2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    width: 100%;
+}
+
+.btn-following{
+	background-color: #282828;
     color: #fff;
     border: none;
     border-radius: 5px;

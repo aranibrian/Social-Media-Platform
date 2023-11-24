@@ -11,6 +11,11 @@
 
 	<button class="btn-premium" style="margin-bottom: 5px;"><i class="fa fa-star"></i> Switch to Premium</button>
 
+	<button type="button" class="btn-following" data-bs-toggle="modal" data-bs-target="#followedUsersModal" onclick="showFollowedUsers()" style="margin-bottom: 5px;">
+    <i class="fa fa-users" aria-hidden="true"></i> Following
+		</button>
+
+
     <!-- My Posts Modal -->
 <div class="modal fade" id="myPostsModal" tabindex="-1" aria-labelledby="myPostsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -53,6 +58,6 @@
             <label for="password" class="form-label">Zip Code (Password)</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
         </div>
-        <button type="submit" class="btn-login">Login</button>
+        <button type="submit" class="btn-login">Login <i class="fa fa-sign-in"></i></button>
     </form>
 <?php endif; ?>

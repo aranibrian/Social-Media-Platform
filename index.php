@@ -26,15 +26,16 @@ session_start();
 </head>
 <body>
     <div class="container-fluid">
-        <!-- Display error message -->
-        <?php if (isset($_SESSION['error'])): ?>
+         <!-- Display error message -->
+            <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-danger" role="alert">
                 <?php echo $_SESSION['error']; ?>
             </div>
             <?php unset($_SESSION['error']); ?>
-        <?php endif; ?>
-
+            <?php endif; ?>
+       
         <div class="row">
+           
             <!-- Account Details or Login/Create Form -->
             <div class="col-md-3">
                 <div class="account">
@@ -73,8 +74,22 @@ session_start();
                 <?php include 'partials/users.php'; ?>
                </div>
             </div>
+<!-- Followed Users Modal -->
+<div class="modal fade" id="followedUsersModal" tabindex="-1" aria-labelledby="followedUsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="followedUsersModalLabel">Followed Users</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="followedUsersList">
+                <!-- Followed users will be listed here -->
+            </div>
+        </div>
+    </div>
+</div>
 
-            
+
 
         </div>
     </div>

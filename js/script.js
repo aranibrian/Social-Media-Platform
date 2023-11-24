@@ -11,10 +11,12 @@ function viewPost(postId) {
     showPostInModal(postId);
 }
 
+// Script to update the view count for free user
 function updateViewCountDisplay() {
     $('#postCounter').html(`<i class="fa fa-eye"></i> Posts viewed: <b>${postViewCount}/${MAX_POST_VIEWS}</b>`);
 }
 
+//Display individual post on a modal
 function showPostInModal(postId) {
     $.ajax({
         url: 'https://jsonplaceholder.typicode.com/posts/' + postId,
@@ -94,7 +96,6 @@ function fetchPosts() {
 }
 
 
-
 // Function to fetch and display users
 function fetchUsers() {
     $.ajax({
@@ -102,7 +103,14 @@ function fetchUsers() {
         method: 'GET',
         success: function(users) {
             var usersHtml = users.map(function(user) {
-                return `<div class="user"><img src="images/user.png" alt="User Avatar" class="user-avatar"><span class="user-name">${user.name}</span><button class="btn-follow"><i class="fa fa-plus" aria-hidden="true"></i> Follow</button></div>`;
+                var encodedName = encodeURIComponent(user.name);  // Encode the user's name
+                return `<div class="user">
+                            <img src="images/user.png" alt="User Avatar" class="user-avatar">
+                            <span class="user-name">${user.name}</span>
+                            <button class="btn-follow" data-userid="${user.id}" onclick="toggleFollow(this, ${user.id}, '${encodedName}')">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Follow
+                            </button>
+                        </div>`;
             }).join('');
             $('#users').html(usersHtml);
         },
@@ -110,6 +118,36 @@ function fetchUsers() {
             console.error("Error fetching users");
         }
     });
+}
+
+
+
+//Following status
+function toggleFollow(button, userId, encodedName) {
+    let userName = decodeURIComponent(encodedName); // Decode the user's name
+    let followedUsers = JSON.parse(sessionStorage.getItem('followedUsers')) || [];
+    const isFollowing = followedUsers.some(user => user.id === userId);
+
+    if (isFollowing) {
+        followedUsers = followedUsers.filter(user => user.id !== userId);
+        $(button).html('<i class="fa fa-plus" aria-hidden="true"></i> Follow');
+    } else {
+        followedUsers.push({ id: userId, name: userName });
+        $(button).html('<i class="fa fa-check" aria-hidden="true"></i> Following');
+    }
+
+    sessionStorage.setItem('followedUsers', JSON.stringify(followedUsers));
+}
+
+
+
+//Show following users
+function showFollowedUsers() {
+    let followedUsers = JSON.parse(sessionStorage.getItem('followedUsers')) || [];
+    let followedUsersHtml = followedUsers.map(user => `<p>${user.name}</p>`).join('');
+    
+    if (!followedUsersHtml) followedUsersHtml = '<p>You have not followed any users yet.</p>';
+    $('#followedUsersList').html(followedUsersHtml);
 }
 
 // A function to fetch user details
@@ -173,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var logoutButton = document.querySelector('.btn-login-sec');
     if (logoutButton) {
         logoutButton.addEventListener('click', function() {
+
+            // Clear the followed users from session storage
+            sessionStorage.removeItem('followedUsers');
             window.location.href = 'logout.php';
         });
     }
