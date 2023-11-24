@@ -5,7 +5,23 @@ function fetchPosts() {
         method: 'GET',
         success: function(posts) {
             var postsHtml = posts.map(function(post) {
-                return '<div class="post"><h6>' + post.title + '</h6><p>' + post.body + '</p></div>';
+                return `
+                    <div class="post">
+                        <h6>${post.title}</h6>
+                        <p>${post.body}</p>
+                        <div class="row post-actions">
+                            <div class="col">
+                                <button class="btn btn-light">
+                                    <i class="fa fa-thumbs-up"></i> Like
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-light">
+                                    <i class="fa fa-comment"></i> Comment
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
             }).join('');
             $('#feed').html(postsHtml);
         },
@@ -15,13 +31,19 @@ function fetchPosts() {
     });
 }
 
+
 function fetchUsers() {
     $.ajax({
         url: 'https://jsonplaceholder.typicode.com/users',
         method: 'GET',
         success: function(users) {
             var usersHtml = users.map(function(user) {
-                return '<div class="user"><p>' + user.name + '</p><button>Follow</button></div>';
+                return `
+                    <div class="user">
+                        <img src="images/user.png" alt="User Avatar" class="user-avatar">
+                        <span class="user-name">${user.name}</span>
+                        <button class="btn-follow"><i class="fa fa-plus" aria-hidden="true"></i> Follow</button>
+                    </div>`;
             }).join('');
             $('#users').html(usersHtml);
         },
@@ -30,6 +52,7 @@ function fetchUsers() {
         }
     });
 }
+
 
 
 // Document ready function to initialize AJAX calls

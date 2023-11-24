@@ -41,14 +41,32 @@ session_start();
             </div>
 
             <!-- Feed -->
-            <div class="col-md-7">
+            <div class="col-md-5">
+                <div class="post">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <input type="text" name="post" placeholder="What is on your Mind?">
+                        </div>
+                    </div> 
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-light button"><i class="fa fa-camera"></i> Post Photo</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-light button"><i class="fa fa-video-camera"></i> Post Video</button>
+                        </div>
+                         
+                    </div>   
+                </div>
                 <div class="feed">
                 <?php include 'partials/feed.php'; ?>
                 </div>
             </div>
 
             <!-- Users and Follow Functionality -->
-            <div class="col-md-2">
+            <div class="col-md-4">
                <div class="users">
                 <?php include 'partials/users.php'; ?>
                </div>
