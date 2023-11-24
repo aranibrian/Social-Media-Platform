@@ -18,6 +18,15 @@ body{
     padding: 8px 15px;
     width: 100%;
 }
+.btn-login-sec{
+	background-color: #fff;
+    color: #4267B2;
+    border: #4267B2;
+    border-radius: 5px;
+    padding: 8px 15px;
+    width: 100%;
+    border: 1px solid #4267B2;
+}
 .post{
 	background-color: #fff;
 	padding: 10px 12px;
@@ -82,4 +91,10 @@ body{
     font-size: 12px;
     padding: 8px 15px;
 }
+.profile-card h6{
+	text-align: center;
+	font-weight: 700;
+	margin: 10px;
+}
+
 
