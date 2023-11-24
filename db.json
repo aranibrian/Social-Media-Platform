@@ -1,13 +1,28 @@
-[
-  {
+{
   "posts": [
     {
       "id": 1,
-      "title": "hello"
+      "title": "Post Title 1",
+      "body": "This is the body of post 1"
+    },
+    {
+      "id": 2,
+      "title": "Post Title 2",
+      "body": "This is the body of post 2"
     }
+    // ... more posts
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "users": [
+    {
+      "id": 1,
+      "name": "User 1",
+      "email": "user1@example.com"
+    },
+    {
+      "id": 2,
+      "name": "User 2",
+      "email": "user2@example.com"
+    }
+    // ... more users
+  ]
 }
-]

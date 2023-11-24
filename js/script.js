@@ -4,8 +4,6 @@ function fetchPosts() {
         url: 'https://my-json-server.typicode.com/aranibrian/Social-Media-Platform/posts',
         method: 'GET',
         success: function(posts) {
-            // Process and display posts
-            // For example, append them to the 'feed' div
             var postsHtml = posts.map(function(post) {
                 return '<div class="post"><h3>' + post.title + '</h3><p>' + post.body + '</p></div>';
             }).join('');
@@ -17,14 +15,12 @@ function fetchPosts() {
     });
 }
 
-// Function to fetch and display user list
+
 function fetchUsers() {
     $.ajax({
         url: 'https://my-json-server.typicode.com/aranibrian/Social-Media-Platform/users',
         method: 'GET',
         success: function(users) {
-            // Process and display users
-            // For example, append them to the 'users' div
             var usersHtml = users.map(function(user) {
                 return '<div class="user"><p>' + user.name + '</p><button>Follow</button></div>';
             }).join('');
@@ -35,6 +31,7 @@ function fetchUsers() {
         }
     });
 }
+
 
 // Document ready function to initialize AJAX calls
 $(document).ready(function() {
