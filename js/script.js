@@ -1,3 +1,60 @@
+let postViewCount = 0;
+const MAX_POST_VIEWS = 20;
+
+function viewPost(postId) {
+    if (postViewCount >= MAX_POST_VIEWS) {
+        window.location.href = 'payment.php';
+        return;
+    }
+    postViewCount++;
+    updateViewCountDisplay();
+    showPostInModal(postId);
+}
+
+function updateViewCountDisplay() {
+    $('#postCounter').html(`<i class="fa fa-eye"></i> Posts viewed: <b>${postViewCount}/${MAX_POST_VIEWS}</b>`);
+}
+
+function showPostInModal(postId) {
+    $.ajax({
+        url: 'https://jsonplaceholder.typicode.com/posts/' + postId,
+        method: 'GET',
+        success: function(post) {
+            // Create the modal HTML
+            var modalHtml = `
+                <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">View Post</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>${post.title}</h6>
+                                <p>${post.body}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            // Append it to the body
+            $('body').append(modalHtml);
+
+            // Show the modal
+            $('#postModal').modal('show');
+
+            // Remove the modal from the DOM on hiding
+            $('#postModal').on('hidden.bs.modal', function() {
+                $('#postModal').remove();
+            });
+        },
+        error: function() {
+            console.error("Error fetching post details");
+        }
+    });
+}
+
+
 // Function to fetch and display posts
 function fetchPosts() {
     $.ajax({
@@ -5,7 +62,28 @@ function fetchPosts() {
         method: 'GET',
         success: function(posts) {
             var postsHtml = posts.map(function(post) {
-                return `<div class="post"><h6>${post.title}</h6><p>${post.body}</p></div>`;
+                return `
+                    <div class="post">
+                        <h6>${post.title}</h6>
+                        <p>${post.body}..<a href="#" onclick="viewPost(${post.id})" style="text-decoration:none;">View All</a></p>
+                        <div class="row post-actions">
+                            <div class="col">
+                                <button class="btn btn-light">
+                                    <i class="fa fa-thumbs-up"></i> Like
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-light">
+                                    <i class="fa fa-comment"></i> Comment
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-light" onclick="viewPost(${post.id})">
+                                    <i class="fa fa-eye"></i> View Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
             }).join('');
             $('#feed').html(postsHtml);
         },
@@ -14,6 +92,8 @@ function fetchPosts() {
         }
     });
 }
+
+
 
 // Function to fetch and display users
 function fetchUsers() {

@@ -1,6 +1,9 @@
 body{
 	margin: 10px;
 	background-color: #eee;
+	display: flex;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
 
 }
 .account{
@@ -18,6 +21,15 @@ body{
     padding: 8px 15px;
     width: 100%;
 }
+.btn-premium {
+    background-image: linear-gradient(to right, #FFA500, #FF4500); /* Gradient from light orange to dark orange */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    width: 100%;
+}
+
 .btn-login-sec{
 	background-color: #fff;
     color: #4267B2;
@@ -51,10 +63,25 @@ body{
 	border-radius: 5px;
 }
 
-.feed, .users {
-    height: 650px; /* Adjust the height as needed */
+.feed {
+    max-height: 100vh;
     overflow-y: auto;
-    overflow: hidden;
+   scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #4267B2 #fff; /* Firefox */
+}
+
+/* Chrome, Edge, and Safari */
+.feed::-webkit-scrollbar {
+    width: 15px;
+}
+
+.feed::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+.feed::-webkit-scrollbar-thumb {
+    background-color: #4267B2;
+    border-radius: 2px;
 }
 .users{
 	background-color: #fff;
@@ -96,5 +123,23 @@ body{
 	font-weight: 700;
 	margin: 10px;
 }
+#userPosts {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+}
+#postCounter{
+	padding: 8px 15px;
+	background-color: #4267B2;
+	color: #fff;
+	border-radius: 5px;
+}
+#payment-form{
+	background-color: #fff;
+	margin: 50px;
+	padding: 50px;
+	margin-top: 150px;
+	border-radius: 5px;
+}
+
 
 

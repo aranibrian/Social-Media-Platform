@@ -6,8 +6,10 @@
     <hr>
     <h6 style="text-align: left;margin: 0;margin-bottom: 10px;">My Profile</h6>
     <div id="userDetails"><!-- User details will be loaded here --></div>
-    <button type="button" class="btn-login" data-bs-toggle="modal" data-bs-target="#myPostsModal" style="margin-bottom: 5px;">My Posts <i class="fa fa-pencil"></i>
+    <button type="button" class="btn-login" data-bs-toggle="modal" data-bs-target="#myPostsModal" style="margin-bottom: 5px;"><i class="fa fa-pencil"></i> My Posts
 	</button>
+
+	<button class="btn-premium" style="margin-bottom: 5px;"><i class="fa fa-star"></i> Switch to Premium</button>
 
     <!-- My Posts Modal -->
 <div class="modal fade" id="myPostsModal" tabindex="-1" aria-labelledby="myPostsModalLabel" aria-hidden="true">
@@ -40,6 +42,8 @@
 <?php else: ?>
     <!-- Display login/create form -->
     <form id="loginForm" method="post" action="login.php">
+    	<div id="postCounter"><i class="fa fa-eye"></i> Posts viewed: <b>0/20</b></div>
+
     	<center><img src="images/login.svg" style="width: 80%;"></center>
         <div class="mb-3">
             <label for="username" class="form-label">Username or Email</label>
