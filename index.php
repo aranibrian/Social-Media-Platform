@@ -20,7 +20,7 @@ session_start();
     <script src="js/script.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <!-- Display error message -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-danger" role="alert">
@@ -31,7 +31,7 @@ session_start();
 
         <div class="row">
             <!-- Account Details or Login/Create Form -->
-            <div class="col-md-3" style="background-color: #eee;">
+            <div class="col-md-3">
                 <div class="account">
                 <?php include 'partials/account.php'; ?>
                 </div>
@@ -39,14 +39,16 @@ session_start();
 
             <!-- Feed -->
             <div class="col-md-7">
-              
+                <div class="feed">
                 <?php include 'partials/feed.php'; ?>
+                </div>
             </div>
 
             <!-- Users and Follow Functionality -->
             <div class="col-md-2">
-               
+               <div class="users">
                 <?php include 'partials/users.php'; ?>
+               </div>
             </div>
         </div>
     </div>
