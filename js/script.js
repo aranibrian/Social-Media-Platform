@@ -1,7 +1,7 @@
 // Function to fetch and display posts
 function fetchPosts() {
     $.ajax({
-        url: 'https://my-json-server.typicode.com/typicode/demo/posts',
+        url: 'https://my-json-server.typicode.com/aranibrian/Social-Media-Platform/posts',
         method: 'GET',
         success: function(posts) {
             // Process and display posts
@@ -20,7 +20,7 @@ function fetchPosts() {
 // Function to fetch and display user list
 function fetchUsers() {
     $.ajax({
-        url: 'https://my-json-server.typicode.com/typicode/demo/users',
+        url: 'https://my-json-server.typicode.com/aranibrian/Social-Media-Platform/users',
         method: 'GET',
         success: function(users) {
             // Process and display users
